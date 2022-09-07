@@ -28,3 +28,30 @@ function login() {
 function submitForm() {
 	$("#clientSignUp").submit();
 }
+function mySearch() {
+	var name = $("#search").val();
+	if(name!="")
+	{
+	$.ajax({
+		url : "getrestro?name=" + name,
+		method : "get",
+		success : function(result) {
+			$('tr').remove(".rex");
+			$("#box").show();
+			for(i=0;i<result.length;i++)
+			{
+			console.log(result[i].userName);
+			$('#searchbox').append('<tr class="rex"><td>' + result[i].userName + '</td></tr>');
+			}
+		},
+	    error:function(result){
+	    	console.log(result);
+	    }
+	});
+	}
+	else{
+		$('tr').remove(".rex");
+		$("#box").hide();
+		
+	}
+}

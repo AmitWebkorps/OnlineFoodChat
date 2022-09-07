@@ -20,7 +20,7 @@
 	<div class="container p-5 my-1">
 		<form id="userLogin" action="userLogin" method="POST">
 
-			<h2>Client Login</h2>
+			<h2>User Login</h2>
 			<div class="mb-3">
 				<label class="form-label">Enter Email</label> <input type="email"
 					class="form-control" id="email" name="email" id="email">

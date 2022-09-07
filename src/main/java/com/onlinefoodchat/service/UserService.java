@@ -1,13 +1,15 @@
 package com.onlinefoodchat.service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import org.apache.naming.java.javaURLContextFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.onlinefoodchat.entity.ClientEntity;
 import com.onlinefoodchat.entity.PlanEntity;
 import com.onlinefoodchat.entity.UserEntity;
 import com.onlinefoodchat.repository.ClientRepo;
@@ -45,10 +47,16 @@ public class UserService {
 	}
 
 	public List<PlanEntity> getRestro(){
-		
-		Date date = new Date();
-		List<PlanEntity> plans=planRepo.findByExpiryDateLessThanEqual(date);
+		java.util.Date date =new java.util.Date();
+		List<PlanEntity> plans=planRepo.findByExpiryDateGreaterThanEqual(new Date(date.getYear(),date.getMonth(),date.getDate()));
+		System.out.println(plans);
 		return plans;
+	}
+
+	public List<PlanEntity> getRestro(String restro) {
+		List<PlanEntity> list=getRestro().stream().filter(x->x.getClientEntity().getName().contains(restro)).collect(Collectors.toList());
+		System.out.println(list);
+	    return list;
 	}
 
 }

@@ -48,7 +48,7 @@
 
 		<div class="mx-auto" style="width: 200px;">
 			<p>Already have Account</p>
-			<a href="login.jsp" class="btn btn-success mx-auto"
+			<a href="userLoginPage" class="btn btn-success mx-auto"
 				style="width: 150px;">Login Now</a>
 		</div>
 

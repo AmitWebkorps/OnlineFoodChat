@@ -45,13 +45,15 @@
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="userDashboard">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+						<li class="nav-item mx-3"><a class="nav-link text-warning"
+							href="logout">Logout</a></li>
 					</ul>
 					<form class="d-flex">
 						<input class="form-control me-2" type="search"
-							placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Search</button>
+							placeholder="Search" id="search" onkeyup="mySearch()">
 					</form>
-					<a class="btn btn-primary ml-3 "  href=""																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		><i class="fa-regular fa-user"></i>  <%=session.getAttribute("userName")%></a>
+					<a class="btn btn-primary ml-3 " href=""><i
+						class="fa-regular fa-user"></i> <%=session.getAttribute("userName")%></a>
 				</div>
 			</div>
 		</div>
@@ -60,6 +62,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

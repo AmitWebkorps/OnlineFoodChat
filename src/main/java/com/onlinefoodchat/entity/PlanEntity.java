@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "plan")
 public class PlanEntity {
@@ -22,6 +24,7 @@ public class PlanEntity {
 
 	@OneToOne
 	@JoinColumn(name = "Client_id")
+	@JsonIgnore
 	private ClientEntity clientEntity;
 
 	private int amount;
@@ -51,7 +54,7 @@ public class PlanEntity {
 
 	@Override
 	public String toString() {
-		return "PlanEntity [clientEntity=" + clientEntity + ", amount=" + amount + ", buyingDate=" + buyingDate
+		return "PlanEntity [ amount=" + amount + ", buyingDate=" + buyingDate
 				+ ", expiryDate=" + expiryDate + "]";
 	}
 

@@ -1,14 +1,22 @@
 package com.onlinefoodchat.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.onlinefoodchat.entity.ClientEntity;
+import com.onlinefoodchat.entity.PlanEntity;
 import com.onlinefoodchat.entity.UserEntity;
 import com.onlinefoodchat.service.UserService;
 
@@ -58,5 +66,21 @@ public class UserController {
 		}
 		return modelAndView;
 	}
-
+	
+	@GetMapping("/logout")
+	public ModelAndView userLogout(HttpSession session)
+	{
+		ModelAndView modelAndView= new ModelAndView();
+		modelAndView.setViewName("userLogin");
+		modelAndView.addObject("Success","Logout Successsully");
+		session.invalidate();
+		return modelAndView;
+	}
+	
+	@GetMapping("/get")
+	@ResponseBody
+	public List<PlanEntity> getRestro(@RequestParam String restro)
+	{
+		return userService.getRestro();
+	}
 }
