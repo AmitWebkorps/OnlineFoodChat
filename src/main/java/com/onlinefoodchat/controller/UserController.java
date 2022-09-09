@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.onlinefoodchat.dto.PLanAndClientDto;
 import com.onlinefoodchat.entity.ClientEntity;
-import com.onlinefoodchat.entity.PlanEntity;
 import com.onlinefoodchat.entity.UserEntity;
 import com.onlinefoodchat.service.UserService;
 
@@ -35,6 +35,11 @@ public class UserController {
 	@RequestMapping("/userSignUpPage")
 	public String signPage() {
 		return "userSignUp";
+	}
+	
+	@RequestMapping("/userDashboard")
+	public String userDashboard() {
+		return "userDashboardPage";
 	}
 
 	@PostMapping("/userLogin")
@@ -77,10 +82,22 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/get")
 	@ResponseBody
-	public List<PlanEntity> getRestro(@RequestParam String restro)
+	@GetMapping("/get")
+	public List<ClientEntity> getRestro(@RequestParam String restro)
 	{
-		return userService.getRestro();
+		return userService.getRestro(restro);
+	}
+	
+	@GetMapping("/getRestro")
+	public ModelAndView getDish(@RequestParam int id)
+	{
+		ModelAndView modelAndView= new ModelAndView();
+	    modelAndView.setViewName("viewRestro");
+		ClientEntity clientEntity=userService.getClient(id);
+		modelAndView.addObject("restro",clientEntity);
+		modelAndView.addObject("dish",userService.getDish(clientEntity));
+		return modelAndView;
+		
 	}
 }

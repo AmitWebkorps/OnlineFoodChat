@@ -44,7 +44,7 @@
 					<ul class="navbar-nav mr-2 me-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="userDashboard">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+						<li class="nav-item mx-4"><a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
 						<li class="nav-item mx-3"><a class="nav-link text-warning"
 							href="logout">Logout</a></li>
 					</ul>
@@ -58,6 +58,13 @@
 			</div>
 		</div>
 	</nav>
+	<div class="card col-lg-2 offset-lg-9 fixed-top mt-5 "
+		id="box" style="display: none; height: 50p; overflow-y: scroll;">
+		<table class="table">
+			<tbody id="searchbox">
+			</tbody>
+		</table>
+	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
