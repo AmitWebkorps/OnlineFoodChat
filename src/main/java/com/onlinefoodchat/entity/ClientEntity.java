@@ -38,6 +38,7 @@ public class ClientEntity {
 	private String restro;
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private PlanEntity planEntity;
 
 
@@ -73,10 +74,11 @@ public class ClientEntity {
 		this.phone = phone;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "ClientEntity [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", password="
-				+ password + ", restro=" + restro + "]";
+				+ password + ", restro=" + restro + ", planEntity=" + planEntity + "]";
 	}
 
 	public String getPassword() {

@@ -30,21 +30,23 @@ function submitForm() {
 }
 function mySearch() {
 	var name = $("#search").val();
+	console.log(name);
 	if(name!="")
 	{
 	$.ajax({
-		url : "getrestro?name=" + name,
+		url : "get?restro="+name,
 		method : "get",
 		success : function(result) {
 			$('tr').remove(".rex");
 			$("#box").show();
 			for(i=0;i<result.length;i++)
 			{
-			console.log(result[i].userName);
-			$('#searchbox').append('<tr class="rex"><td>' + result[i].userName + '</td></tr>');
+			console.log(result[i]);
+			$('#searchbox').append('<tr class="rex"><td><a href="getRestro?id='+result[i].id+'" class="btn">' + result[i].restro + '</td></tr>');
 			}
 		},
 	    error:function(result){
+	    	console.log("data")
 	    	console.log(result);
 	    }
 	});
@@ -55,3 +57,16 @@ function mySearch() {
 		
 	}
 }
+function add(quantity){
+	
+	 quan = $("#"+quantity.id+"").val();
+	 $("#"+quantity.id+"").val(parseInt(quan)+1);
+	
+}
+function sub(quantity){
+	 quan = $("#"+quantity.id+"").val();
+	 if(quan!=0)
+	 $("#"+quantity.id+"").val(parseInt(quan)-1);
+	
+}
+

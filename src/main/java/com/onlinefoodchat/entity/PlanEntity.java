@@ -34,7 +34,7 @@ public class PlanEntity {
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -50,12 +50,6 @@ public class PlanEntity {
 	public PlanEntity() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "PlanEntity [ amount=" + amount + ", buyingDate=" + buyingDate
-				+ ", expiryDate=" + expiryDate + "]";
 	}
 
 	public int getAmount() {
@@ -80,5 +74,11 @@ public class PlanEntity {
 
 	public void setExpiryDate(Date date) {
 		this.expiryDate = date;
+	}
+
+	@Override
+	public String toString() {
+		return "PlanEntity [id=" + id + ", amount=" + amount + ", buyingDate="
+				+ buyingDate + ", expiryDate=" + expiryDate + "]";
 	}
 }
