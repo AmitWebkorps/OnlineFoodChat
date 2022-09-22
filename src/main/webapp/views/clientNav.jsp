@@ -49,20 +49,14 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> Options </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="user/userSignUpPage">User
-									Registration</a> <a class="dropdown-item"
-									href="client/clientsignuppage">Client Registration</a>
+								<a class="dropdown-item" href="Orders">View Order</a> <a class="dropdown-item"
+									href="Notification">Notification</a>
 
 							</div></li>
 						<li class="nav-item mx-3"><a class="nav-link text-warning"
 							href="logout">Logout</a></li>
 					</ul>
-					<form class="d-flex">
-						<input class="form-control me-2" type="search"
-							placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Search</button>
-					</form>
-					<a class="btn btn-primary ml-3 " href="profile"><i
+					<a class="btn btn-primary ml-3 " href="editProfile"><i
 						class="fa-regular fa-user"></i> <%=session.getAttribute("userName")%></a>
 				</div>
 			</div>

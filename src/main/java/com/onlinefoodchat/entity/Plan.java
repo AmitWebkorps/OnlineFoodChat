@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "plan")
-public class PlanEntity {
+public class Plan {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +25,7 @@ public class PlanEntity {
 	@OneToOne
 	@JoinColumn(name = "Client_id")
 	@JsonIgnore
-	private ClientEntity clientEntity;
+	private Client client;
 
 	private int amount;
 	private Date buyingDate;
@@ -39,15 +39,15 @@ public class PlanEntity {
 		this.id = id;
 	}
 
-	public ClientEntity getClientEntity() {
-		return clientEntity;
+	public Client getClient() {
+		return client;
 	}
 
-	public void setClientEntity(ClientEntity clientEntity) {
-		this.clientEntity = clientEntity;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
-	public PlanEntity() {
+	public Plan() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -78,7 +78,7 @@ public class PlanEntity {
 
 	@Override
 	public String toString() {
-		return "PlanEntity [id=" + id + ", amount=" + amount + ", buyingDate="
+		return "Plan [id=" + id + ", amount=" + amount + ", buyingDate="
 				+ buyingDate + ", expiryDate=" + expiryDate + "]";
 	}
 }

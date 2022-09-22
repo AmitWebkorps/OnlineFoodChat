@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class UserEntity {
+public class User {
 
 	@Id
 	private String id;
@@ -51,12 +51,12 @@ public class UserEntity {
 		this.password = password;
 	}
 
-	public UserEntity() {
+	public User() {
 	}
 
 	@Override
 	public String toString() {
-		return "UserEntity [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password +"]";
 	}
 
 }

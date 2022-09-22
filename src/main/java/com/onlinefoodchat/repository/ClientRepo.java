@@ -1,21 +1,19 @@
 package com.onlinefoodchat.repository;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import com.onlinefoodchat.entity.ClientEntity;
-import com.onlinefoodchat.entity.PlanEntity;
+import com.onlinefoodchat.entity.Client;
+import com.onlinefoodchat.entity.Plan;
 
-public interface ClientRepo extends JpaRepository<ClientEntity, Integer> {
+public interface ClientRepo extends JpaRepository<Client, Integer> {
 
-	public ClientEntity findByEmailAndPassword(String email, String password);
+	public Client findByEmailAndPassword(String email, String password);
     
-	public List<ClientEntity> findByRestroContains(String restro);
+	public List<Client> findByRestroContains(String restro);
 	
-	public List<ClientEntity> findByRestroAndPlanEntity(String restro,PlanEntity planEntity);
+	public List<Client> findByRestroAndPlan(String restro,Plan plan);
 
-	public List<ClientEntity> findByPlanEntity(PlanEntity planEntity);
+	public List<Client> findByPlan(Plan plan);
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 .carousel .carousel-item {
@@ -42,9 +43,16 @@
 				<a class="navbar-brand" href="#">Online-Food-Chat</a>
 				<div class="d-flex justify-content-around">
 					<ul class="navbar-nav mr-2 me-auto mb-2 mb-lg-0">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="userDashboard">Home</a></li>
-						<li class="nav-item mx-4"><a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+						<li class="nav-item"><a class="nav-link"
+							aria-current="page" href="userDashboard"><i
+								class="fa-solid fa-home"></i> Home</a></li>
+						<li class="nav-item mx-4"><a class="nav-link" href="cart"><i
+								class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+						<li class="nav-item mx-4"><a class="nav-link" href="Orders"><i
+								class="fa-solid fa-bag-shopping"></i> Orders</a></li>
+						<li class="nav-item mx-4"><a class="nav-link"
+							href="Notification"><i class="fa-solid fa-bell"></i>
+								Notification</a></li>
 						<li class="nav-item mx-3"><a class="nav-link text-warning"
 							href="logout">Logout</a></li>
 					</ul>
@@ -58,14 +66,16 @@
 			</div>
 		</div>
 	</nav>
-	<div class="card col-lg-2 offset-lg-9 fixed-top mt-5 "
-		id="box" style="display: none; height: 50p; overflow-y: scroll;">
+	<div class="card col-lg-2 offset-lg-9 fixed-top mt-5 " id="box"
+		style="display: none; height: 50p; overflow-y: scroll;">
 		<table class="table">
 			<tbody id="searchbox">
 			</tbody>
 		</table>
 	</div>
 </body>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>

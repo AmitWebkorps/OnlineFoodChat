@@ -12,6 +12,8 @@ public class OtpService {
 
 	@Autowired
 	private JavaMailSender javaMailSender;
+	
+	private int otp=0;
 
 	public int sendOtpMail(String to) {
 		int otp = this.generateOTP();
@@ -24,6 +26,7 @@ public class OtpService {
 		simpleMailMessage.setSubject(subject);
 		simpleMailMessage.setText(message);
 		javaMailSender.send(simpleMailMessage);
+		this.otp=otp;
 		return otp;
 	}
 
@@ -33,7 +36,9 @@ public class OtpService {
 		return otp;
 	}
 
-	public boolean validateOtp(int Otp, String enteredOtp) {
+	public boolean validateOtp(String enteredOtp){
+		if(enteredOtp.equals(""+otp))
+		    return true;
 		return false;
 	}
 }

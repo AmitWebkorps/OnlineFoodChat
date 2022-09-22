@@ -13,7 +13,7 @@
       <img src="/images/bg.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
           <h5>Go to Orders Section</h5>
-          <button class="btn btn-success">View Order</button>
+          <a href="Orders" class="btn btn-success">View Order</a>
       </div>
       
     </div>

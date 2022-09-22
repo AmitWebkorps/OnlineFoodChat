@@ -9,25 +9,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.sun.istack.Nullable;
 @Entity
-@Table(name ="menu")
-public class MenuEntity {
+@Table(name = "menu")
+public class Menu {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "Client_id")
-	private ClientEntity clientEntity;
-	
+	private Client client;
+
 	private String name;
+
 	private double price;
-	
+
 	@Column(nullable = true)
 	private String imageName;
 
-	public MenuEntity() {
+	public Menu() {
 	}
 
 	public int getId() {
@@ -38,12 +38,12 @@ public class MenuEntity {
 		this.id = id;
 	}
 
-	public ClientEntity getClientEntity() {
-		return clientEntity;
+	public Client getClient() {
+		return client;
 	}
 
-	public void setClientEntity(ClientEntity clientEntity) {
-		this.clientEntity = clientEntity;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	public String getName() {
@@ -72,9 +72,8 @@ public class MenuEntity {
 
 	@Override
 	public String toString() {
-		return "MenuEntity [id=" + id + ", clientEntity=" + clientEntity + ", name=" + name + ", price=" + price
+		return "Menu [id=" + id + ", client=" + client + ", name=" + name + ", price=" + price
 				+ ", imageName=" + imageName + "]";
 	}
-
 
 }

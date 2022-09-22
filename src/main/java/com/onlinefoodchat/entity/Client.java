@@ -13,19 +13,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "client")
-public class ClientEntity {
+public class Client {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private int id;
 
-	public PlanEntity getPlanEntity() {
-		return planEntity;
+	public Plan getPlan() {
+		return plan;
 	}
 
-	public void setPlanEntity(PlanEntity planEntity) {
-		this.planEntity = planEntity;
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
 
 	private String name;
@@ -39,7 +39,7 @@ public class ClientEntity {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
-	private PlanEntity planEntity;
+	private Plan plan;
 
 
 	public int getId() {
@@ -77,8 +77,8 @@ public class ClientEntity {
 	
 	@Override
 	public String toString() {
-		return "ClientEntity [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", password="
-				+ password + ", restro=" + restro + ", planEntity=" + planEntity + "]";
+		return "Client [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", password="
+				+ password + ", restro=" + restro + ", plan=" + plan + "]";
 	}
 
 	public String getPassword() {
@@ -89,12 +89,12 @@ public class ClientEntity {
 		this.password = password;
 	}
 
-	public PlanEntity getPlanentity() {
-		return planEntity;
+	public Plan getPlanentity() {
+		return plan;
 	}
 
-	public void setPlanentity(PlanEntity planEntity) {
-		this.planEntity = planEntity;
+	public void setPlanentity(Plan plan) {
+		this.plan = plan;
 	}
 
 	public String getRestro() {
