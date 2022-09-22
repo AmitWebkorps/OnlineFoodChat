@@ -9,8 +9,8 @@
 				<img class="card-img-top" src="/images/pastry.jpg"
 					alt="Card image cap" height="230" width="150">
 				<div class="card-body">
-					<h5 class="card-title">${element.getClientEntity().getRestro()}</h5>
-					<a href="#" class="btn btn-success text-center">Go somewhere</a>
+					<h5 class="card-title">${element.getClient().getRestro()}</h5>
+					<button type="button" class="btn btn-success text-center"></button>
 				</div>
 			</div>
 		</div>

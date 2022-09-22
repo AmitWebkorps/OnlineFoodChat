@@ -2,27 +2,27 @@ package com.onlinefoodchat.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.weaver.reflect.IReflectionWorld;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.onlinefoodchat.entity.ClientEntity;
-import com.onlinefoodchat.entity.MenuEntity;
-import com.onlinefoodchat.entity.PlanEntity;
+import com.onlinefoodchat.entity.Client;
+import com.onlinefoodchat.entity.Menu;
+import com.onlinefoodchat.entity.Plan;
 import com.onlinefoodchat.service.ClientService;
 import com.onlinefoodchat.service.OtpService;
 
@@ -34,7 +34,6 @@ import com.onlinefoodchat.service.OtpService;
 @RequestMapping("/client")
 public class ClientController {
 
-	int otp;
 	@Autowired
 	private OtpService otpService;
 	@Autowired
@@ -56,16 +55,16 @@ public class ClientController {
 	}
 
 	@PostMapping("/clientLogin")
-	public ModelAndView clientLogin(@ModelAttribute ClientEntity clientEntity, HttpServletRequest request) {
+	public ModelAndView clientLogin(@ModelAttribute Client client, HttpServletRequest request) {
 
-		clientEntity = clientService.clientLogin(clientEntity);
+		client = clientService.clientLogin(client);
 
 		ModelAndView modelAndView = new ModelAndView();
-		if (clientEntity != null) {
+		if (client != null) {
 			modelAndView.setViewName("clientDashboard");
 			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute("userName", clientEntity.getName());
-			httpSession.setAttribute("userId", clientEntity.getId());
+			httpSession.setAttribute("userName", client.getName());
+			httpSession.setAttribute("id", client.getId());
 			return modelAndView;
 		}
 		modelAndView.setViewName("clientLogin");
@@ -74,12 +73,12 @@ public class ClientController {
 	}
 
 	@PostMapping("/signup")
-	public ModelAndView clientSignUp(@ModelAttribute ClientEntity clientEntity, @ModelAttribute PlanEntity planEntity) {
+	public ModelAndView clientSignUp(@ModelAttribute Client client, @ModelAttribute Plan plan) {
 
-		clientEntity = clientService.clientSigUp(clientEntity, planEntity);
+		client = clientService.clientSigUp(client, plan);
 
 		ModelAndView modelAndView = new ModelAndView();
-		if (clientEntity != null) {
+		if (client != null) {
 			modelAndView.setViewName("clientLogin");
 			modelAndView.addObject("status", "Successfully Registered ! Now you can Login");
 			return modelAndView;
@@ -92,20 +91,48 @@ public class ClientController {
 	@ResponseBody
 	@GetMapping("/sendotp")
 	public String sendOtp(@RequestParam String email) {
-		this.otp = otpService.sendOtpMail(email);
+		otpService.sendOtpMail(email);
 		return "success";
+	}
+	
+	@ResponseBody
+	@GetMapping("/checkotp")
+	public String validateOtp(@RequestParam String otp) { 
+	    if(otpService.validateOtp(otp))
+	             return "success";
+	    return "failer";
+	}
+	
+	@RequestMapping("/editProfile")
+	public ModelAndView editProfile(HttpSession session)
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("clientProfile");
+		modelAndView.addObject("details",clientService.getDetails((Integer)session.getAttribute("id")));
+		return modelAndView;
+	}
+	
+	@PostMapping("/updateProfile")
+	public ModelAndView updateProfile(@ModelAttribute Client client,HttpSession session)
+	{
+		System.out.println(client);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("clientDashboard");
+		clientService.setDetails(client,(Integer)session.getAttribute("id"));
+		modelAndView.addObject("update","Updated successfully");
+		return modelAndView;
 	}
 
 	@RequestMapping("/addrestro")
 	public ModelAndView addRestro(HttpServletRequest request) {
 
-		String restro = clientService.addRestro((int) request.getSession().getAttribute("userId"));
+		String restro = clientService.addRestro((int) request.getSession().getAttribute("id"));
 		ModelAndView modelAndView = new ModelAndView();
 		if (restro == null || restro.equals("")) {
 			modelAndView.setViewName("addRestro");
 			return modelAndView;
 		}
-		modelAndView.addObject("dish", getMenuList((int) request.getSession().getAttribute("userId")));
+		modelAndView.addObject("dish", getMenuList((int) request.getSession().getAttribute("id")));
 		modelAndView.setViewName("addMenu");
 		return modelAndView;
 	}
@@ -113,30 +140,39 @@ public class ClientController {
 	@PostMapping("/addrestroname")
 	public ModelAndView addRestroName(@RequestParam String name, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		clientService.addRestroName(name, (int) request.getSession().getAttribute("userId"));
+		clientService.addRestroName(name, (int) request.getSession().getAttribute("id"));
 		modelAndView.setViewName("addMenu");
 		return modelAndView;
 	}
 
 	@GetMapping("/getMenu")
-	public List<MenuEntity> getMenuList(int id) {
+	public List<Menu> getMenuList(int id) {
 		return clientService.getMenuList(id);
 	}
 
 	@PostMapping("/addDish")
 	public ModelAndView addDish(@RequestParam("image") MultipartFile image,
-			@ModelAttribute MenuEntity menuEntity, HttpServletRequest request) throws IOException {
+			@ModelAttribute Menu menu, HttpServletRequest request) throws IOException {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("addDish");
-		if (menuEntity == null) {
+		if (menu == null) {
 			modelAndView.addObject("Failed", "Please Fill All Mandatory deatils");
 			return modelAndView;
 		}
-		if (clientService.addDish(menuEntity, image, (int) request.getSession().getAttribute("userId")) != null) {
+		if (clientService.addDish(menu, image, (int) request.getSession().getAttribute("id")) != null) {
 			modelAndView.addObject("Sucess", "Dish Added SuccessFully");
 			return modelAndView;
 		}
 		modelAndView.addObject("Failed", "Something Went Wrong");
+		return modelAndView;
+	}
+	
+	@PostMapping("/editDish")
+	public ModelAndView editDish(@RequestParam("image") MultipartFile image,@ModelAttribute Menu menu )
+	{
+		ModelAndView modelAndView= new ModelAndView();
+		modelAndView.setViewName("redirect:addrestro");
+		clientService.editDish(menu,image);
 		return modelAndView;
 	}
 
@@ -145,7 +181,7 @@ public class ClientController {
 	{
 		ModelAndView modelAndView= new ModelAndView();
 		modelAndView.setViewName("clientProfile");
-		modelAndView.addObject("client", clientService.getDetails((Integer)session.getAttribute("userId")));
+		modelAndView.addObject("client", clientService.getDetails((Integer)session.getAttribute("id")));
 		return modelAndView;
 	}
 	
@@ -172,6 +208,34 @@ public class ClientController {
 		modelAndView.setViewName("clientLogin");
 		modelAndView.addObject("status","Logout Successsully");
 		session.invalidate();
+		return modelAndView;
+	}
+	
+	@RequestMapping("/Orders")
+	public ModelAndView getAllOrders(HttpSession session)
+	{
+		System.out.println("nhi aaya");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("clientOrder");
+		modelAndView.addObject("order",clientService.getAllOrders((Integer)session.getAttribute("id")));
+		return modelAndView;
+	}
+	
+	@RequestMapping("/cancelorder")
+	public ModelAndView cancelOrder(@RequestParam int id )
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:Orders");
+		String status=clientService.cancelOrder(id);
+		return modelAndView;
+	}
+	
+	@RequestMapping("/Notification")
+	public ModelAndView getAllNotification(HttpSession session)
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("clientNotification");
+		modelAndView.addObject("notify",clientService.getAllNotification((Integer)session.getAttribute("id")));
 		return modelAndView;
 	}
 }

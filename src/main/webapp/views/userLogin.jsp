@@ -18,7 +18,7 @@
    </div>
    <% }%>
 	<div class="container p-5 my-1">
-		<form id="userLogin" action="userLogin" method="POST">
+		<form id="form" action="userLogin" method="POST">
 
 			<h2>User Login</h2>
 			<div class="mb-3">
@@ -31,14 +31,14 @@
 					type="password" class="form-control" name="password" id="password">
 			</div>
 
-			<button type="submit" class="btn btn-success" data-toggle="modal"
-				data-target="#exampleModal" id="sendotp" >Login</button>
+			<button type="button" class="btn btn-success" data-toggle="modal"
+				data-target="#exampleModal" id="sendotp" onclick="send()">Login</button>
 
 		</form>
 
 		<div class="mx-auto" style="width: 200px;">
 			<p>Don't have Account</p>
-			<a href="views/clientSignUp.jsp" class="btn btn-success mx-auto"
+			<a href="userSignUpPage" class="btn btn-success mx-auto"
 				style="width: 150px;">Register Now</a>
 		</div>
 
@@ -59,14 +59,14 @@
 				<div class="modal-body">
 					<div class="mb-3">
 						<p id="result"></p>
-						<input type="text" class="form-control">
+						<input type="text"  id="otpInput" class="form-control">
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" onclick="">Resend
+					<button type="button" class="btn btn-secondary" onclick="send()">Resend
 						Otp</button>
 					<button type="button" class="btn btn-primary"
-						onclick="submitForm()">Submit</button>
+						onclick="check()">Submit</button>
 				</div>
 			</div>
 		</div>

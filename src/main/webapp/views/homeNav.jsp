@@ -29,8 +29,6 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="user/userLoginPage">User Login</a> <a
 							class="dropdown-item" href="client/clientloginpage">Client Login</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Admin Login</a>
 					</div></li>
 			</ul>
 		</div>

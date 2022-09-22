@@ -23,7 +23,7 @@
 	%>
 	<div class="row justify-content-md-center">
 		<div class="card p-3 my-1 col-lg-5 bg-white">
-			<form id="clientSignUp" action="signup" method="POST">
+			<form id="form" action="signup" method="POST">
 				<h2>Client SignUp</h2>
                 <hr>
 				<div class="mb-3">
@@ -56,7 +56,7 @@
 						<option value="400">Three month 400Rs</option>
 					</select>
 				</div>
-				<button type="submit" class="btn btn-success" data-toggle="modal"
+				<button type="button" class="btn btn-success" data-toggle="modal"
 					data-target="#exampleModal" id="sendotp" onclick="send()">SignUp</button>
 
 			</form>
@@ -85,14 +85,14 @@
 				<div class="modal-body">
 					<div class="mb-3">
 						<p id="result"></p>
-						<input type="text" class="form-control">
+						<input type="text"  id="otpInput" class="form-control">
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" onclick="send()">Resend
 						Otp</button>
 					<button type="button" class="btn btn-primary"
-						onclick="submitForm()">Submit</button>
+						onclick="check()">Submit</button>
 				</div>
 			</div>
 		</div>

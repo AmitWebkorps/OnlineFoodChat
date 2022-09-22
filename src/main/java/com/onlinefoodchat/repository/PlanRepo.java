@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.onlinefoodchat.entity.ClientEntity;
-import com.onlinefoodchat.entity.PlanEntity;
+import com.onlinefoodchat.entity.Client;
+import com.onlinefoodchat.entity.Plan;
 
-public interface PlanRepo extends JpaRepository<PlanEntity,String>{
+public interface PlanRepo extends JpaRepository<Plan,String>{
 
-	public List<PlanEntity> findByExpiryDateGreaterThanEqual(Date now);
+	public List<Plan> findByExpiryDateGreaterThanEqual(Date now);
 	
-	public List<PlanEntity> findByClientEntityAndExpiryDateGreaterThanEqual(ClientEntity clientEntity,Date now);
+	public List<Plan> findByClientAndExpiryDateGreaterThanEqual(Client client,Date now);
 }
