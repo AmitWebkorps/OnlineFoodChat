@@ -22,7 +22,7 @@
 					class="form-control" name="phone" id="phone"  value = "${details.getPhone()}" required>
 			</div>
 			<div >
-				<button type="submit" class="btn btn-success btn-block">Update</button>
+				<button type="submit" class="btn btn-primary btn-block">Update</button>
 			</div>
 
 		</form>

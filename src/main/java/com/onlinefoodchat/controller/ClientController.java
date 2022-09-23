@@ -107,6 +107,15 @@ public class ClientController {
 	public ModelAndView editProfile(HttpSession session)
 	{
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("clientProfileDetails");
+		modelAndView.addObject("details",clientService.getDetails((Integer)session.getAttribute("id")));
+		return modelAndView;
+	}
+	
+	@RequestMapping("/getProfileDetails")
+	public ModelAndView getProfileDetails(HttpSession session)
+	{
+		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("clientProfile");
 		modelAndView.addObject("details",clientService.getDetails((Integer)session.getAttribute("id")));
 		return modelAndView;
@@ -117,7 +126,7 @@ public class ClientController {
 	{
 		System.out.println(client);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("clientDashboard");
+		modelAndView.setViewName("redirect:editProfile");
 		clientService.setDetails(client,(Integer)session.getAttribute("id"));
 		modelAndView.addObject("update","Updated successfully");
 		return modelAndView;

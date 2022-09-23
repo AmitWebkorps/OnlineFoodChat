@@ -49,14 +49,14 @@
 
 				<div class="mb-3">
 					<label class="form-label">Select Payment Plan</label> <select
-						class="form-control" name="amount">
+						class="form-control" name="amount" required>
 						<option selected>Open this select menu</option>
 						<option value="150">One month 150Rs</option>
 						<option value="290">Two month 290Rs</option>
 						<option value="400">Three month 400Rs</option>
 					</select>
 				</div>
-				<button type="button" class="btn btn-success" data-toggle="modal"
+				<button type="button" class="btn-block btn btn-success" data-toggle="modal"
 					data-target="#exampleModal" id="sendotp" onclick="send()">SignUp</button>
 
 			</form>
