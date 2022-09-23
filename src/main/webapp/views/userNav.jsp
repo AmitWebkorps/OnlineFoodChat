@@ -60,7 +60,7 @@
 						<input class="form-control me-2" type="search"
 							placeholder="Search" id="search" onkeyup="mySearch()">
 					</form>
-					<a class="btn btn-primary ml-3 " href=""><i
+					<a class="btn btn-primary ml-3 "><i
 						class="fa-regular fa-user"></i> <%=session.getAttribute("userName")%></a>
 				</div>
 			</div>

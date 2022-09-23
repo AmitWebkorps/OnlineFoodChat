@@ -72,8 +72,7 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Enter Dish Price</label> <input
-							type="file" class="form-control" name="image" id="imageName"
-							required>
+							type="file" class="form-control" name="image" id="imageName">
 					</div>
 					<button type="submit" class="btn btn-success mx-auto">Save Changes</button>
 				</form>

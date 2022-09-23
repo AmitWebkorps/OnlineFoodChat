@@ -53,7 +53,7 @@ public class ClientService {
 		}
 
 		plan.setExpiryDate(date2);
-		client.setPlanentity(plan);
+		client.setPlan(plan);
 
 		if (clientRepo.findByEmailAndPassword(client.getEmail(), client.getPassword()) == null) {
 			return clientRepo.save(client);

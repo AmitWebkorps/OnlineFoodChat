@@ -44,8 +44,11 @@ public class UserController {
 	}
 
 	@RequestMapping("/userDashboard")
-	public String userDashboard() {
-		return "userDashboardPage";
+	public ModelAndView userDashboard() {
+	    ModelAndView modelAndView= new ModelAndView();
+		modelAndView.addObject("restro", userService.getRestro());
+		modelAndView.setViewName("userDashboardPage");
+		return modelAndView;
 	}
 
 	@RequestMapping("/userLogin")

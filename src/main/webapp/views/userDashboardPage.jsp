@@ -1,7 +1,7 @@
 <%@ include file="userNav.jsp"%>
 <h3 class="border-bottom mt-2 pb-2">Common Restro:-</h3>
 
-<div class="container mt-4">${restro}
+<div class="container mt-4">
 	<div class="row">
 	 <c:forEach items="${restro}" var="element">
 		<div class="col-lg-3">

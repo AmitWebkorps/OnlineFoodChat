@@ -88,15 +88,6 @@ public class Client {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Plan getPlanentity() {
-		return plan;
-	}
-
-	public void setPlanentity(Plan plan) {
-		this.plan = plan;
-	}
-
 	public String getRestro() {
 		return restro;
 	}
